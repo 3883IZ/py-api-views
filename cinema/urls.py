@@ -11,17 +11,41 @@ from .views import (
 )
 
 router = DefaultRouter()
-router.register("cinema_halls", CinemaHallViewSet, basename="cinema_hall")
-router.register("movies", MovieViewSet, basename="movie")
+router.register(
+    "cinema_halls",
+    CinemaHallViewSet,
+    basename="cinema_hall",
+)
+router.register(
+    "movies",
+    MovieViewSet,
+    basename="movie",
+)
 
 urlpatterns = [
     # Genre
-    path("genres/", GenreAPIView.as_view(), name="genre-list"),
-    path("genres/<int:pk>/", GenreDetailAPIView.as_view(), name="genre-detail"),
+    path(
+        "genres/",
+        GenreAPIView.as_view(),
+        name="genre-list",
+    ),
+    path(
+        "genres/<int:pk>/",
+        GenreDetailAPIView.as_view(),
+        name="genre-detail",
+    ),
 
     # Actor
-    path("actors/", ActorGenericAPIView.as_view(), name="actor-list"),
-    path("actors/<int:pk>/", ActorDetailGenericAPIView.as_view(), name="actor-detail"),
+    path(
+        "actors/",
+        ActorGenericAPIView.as_view(),
+        name="actor-list",
+    ),
+    path(
+        "actors/<int:pk>/",
+        ActorDetailGenericAPIView.as_view(),
+        name="actor-detail",
+    ),
 
     # CinemaHall + Movie через router
     path("", include(router.urls)),
