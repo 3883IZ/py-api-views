@@ -4,8 +4,8 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     GenreAPIView,
     GenreDetailAPIView,
-    ActorGenericAPIView,
-    ActorDetailGenericAPIView,
+    ActorList,
+    ActorDetail,
     CinemaHallViewSet,
     MovieViewSet,
 )
@@ -38,12 +38,12 @@ urlpatterns = [
     # Actor
     path(
         "actors/",
-        ActorGenericAPIView.as_view(),
+        ActorList.as_view(),
         name="actor-list",
     ),
     path(
         "actors/<int:pk>/",
-        ActorDetailGenericAPIView.as_view(),
+        ActorDetail.as_view(),
         name="actor-detail",
     ),
 
