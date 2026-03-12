@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import Actor, Genre, CinemaHall, Movie
 
 
@@ -23,12 +24,21 @@ class CinemaHallSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     # ManyToMany поля відображаємо як списки ID
     actors = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Actor.objects.all()
+        many=True,
+        queryset=Actor.objects.all(),
     )
     genres = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Genre.objects.all()
+        many=True,
+        queryset=Genre.objects.all(),
     )
 
     class Meta:
         model = Movie
-        fields = ("id", "title", "description", "duration", "actors", "genres")
+        fields = (
+            "id",
+            "title",
+            "description",
+            "duration",
+            "actors",
+            "genres",
+        )
