@@ -155,3 +155,10 @@ class CinemaHallViewSet(
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+
+
+# Aliases for tests compatibility
+ActorList = ActorGenericAPIView
+ActorDetail = ActorDetailGenericAPIView
+GenreList = GenreAPIView
+GenreDetail = GenreDetailAPIView
