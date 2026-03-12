@@ -1,8 +1,9 @@
+from django.shortcuts import get_object_or_404
+
+from rest_framework import viewsets, status, mixins
 from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView
-from rest_framework import viewsets, status
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
 
 from .models import Genre, Actor, CinemaHall, Movie
 from .serializers import (
@@ -137,8 +138,15 @@ class ActorDetailGenericAPIView(GenericAPIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# CinemaHall → GenericViewSet
-class CinemaHallViewSet(viewsets.GenericViewSet):
+# CinemaHall → GenericViewSet with CRUD mixins
+class CinemaHallViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet,
+):
     queryset = CinemaHall.objects.all()
     serializer_class = CinemaHallSerializer
 
